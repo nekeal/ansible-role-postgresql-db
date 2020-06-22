@@ -1,0 +1,29 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: "install common packages"
+      apt:
+        name:
+          - gpg-agent
+          - locales
+        state: present
+        update_cache: yes
+      ignore_errors: true
+
+    - name: Create ansbile user
+      user:
+        name: ansible
+
+    - name: Add ansible user to sudo
+      lineinfile:
+        path: "/etc/sudoers.d/ansible"
+        line: "ansible ALL=(ALL) NOPASSWD: ALL"
+        state: present
+        mode: 0440
+        create: yes
+        validate: 'visudo -cf %s'
+
+    - name: Generate locales
+      locale_gen:
+        name: "en_US.UTF-8"
