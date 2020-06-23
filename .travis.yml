@@ -12,8 +12,6 @@ env:
     - POSTGRESQL_VERSION=10
     - POSTGRESQL_VERSION=11
     - POSTGRESQL_VERSION=12
-    - POSTGRESQL_VERSION=13
-
 # Install ansible
 addons:
   apt:
@@ -32,7 +30,7 @@ install:
 
 script:
   # Basic role syntax check
-  - molecule test 
+  - molecule test
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
