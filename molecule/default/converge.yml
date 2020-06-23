@@ -6,4 +6,5 @@
     - name: "Include postgresql-db"
       include_role:
         name: "postgresql-db"
-        
+  vars:
+    ansible_python_interpreter: auto

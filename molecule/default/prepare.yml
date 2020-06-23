@@ -6,7 +6,6 @@
       apt:
         name:
           - gpg-agent
-          - locales
         state: present
         update_cache: yes
       ignore_errors: true
@@ -24,6 +23,6 @@
         create: yes
         validate: 'visudo -cf %s'
 
-    - name: Generate locales
-      locale_gen:
-        name: "en_US.UTF-8"
+    - name: Install locales
+      include_role:
+        name: robertdebock.locale
