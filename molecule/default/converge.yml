@@ -8,3 +8,4 @@
         name: "postgresql-db"
   vars:
     ansible_python_interpreter: auto
+    postgresql_major_version: "{{ lookup('env', 'POSTGRESQL_VERSION') | default(postgresql_major_version, true) }}"

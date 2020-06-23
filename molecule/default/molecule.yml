@@ -62,6 +62,8 @@ platforms:
 provisioner:
   name: ansible
   log: true
+  env:
+    POSTGRESQL_VERSION: ${POSTGRESQL_VERSION}
 verifier:
   name: testinfra
   options:

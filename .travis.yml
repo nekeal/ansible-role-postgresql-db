@@ -32,7 +32,7 @@ install:
 
 script:
   # Basic role syntax check
-  - molecule test -- -e "postgresql_major_version=$POSTGRESQL_VERSION" 
+  - molecule test 
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
