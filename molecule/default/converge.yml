@@ -3,9 +3,12 @@
   hosts: all
   remote_user: ansible
   tasks:
+    - name: Set Postgresql version
+        set_fact:
+          postgresql_major_version: "{{ lookup('env', 'POSTGRESQL_VERSION'}}"
+        when: postgresql_major_version is not defined
     - name: "Include postgresql-db"
       include_role:
         name: "postgresql-db"
   vars:
     ansible_python_interpreter: auto
-    postgresql_major_version: "{{ lookup('env', 'POSTGRESQL_VERSION') | default(postgresql_major_version, true) }}"
