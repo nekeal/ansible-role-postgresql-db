@@ -9,8 +9,10 @@ env:
   global:
     - ROLE_NAME: postgresql-db
   matrix:
+    - POSTGRESQL_VERSION=10
     - POSTGRESQL_VERSION=11
     - POSTGRESQL_VERSION=12
+    - POSTGRESQL_VERSION=13
 
 # Install ansible
 addons:
@@ -30,7 +32,7 @@ install:
 
 script:
   # Basic role syntax check
-  - molecule test
+  - molecule test -- -e "postgresql_major_version=$POSTGRESQL_VERSION" 
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
