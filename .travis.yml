@@ -8,10 +8,16 @@ sudo: false
 env:
   global:
     - ROLE_NAME: postgresql-db
-  matrix:
+  matrix_postgres:
     - POSTGRESQL_VERSION=10
     - POSTGRESQL_VERSION=11
     - POSTGRESQL_VERSION=12
+  matrix_distro:
+    - MOLECULE_DISTRIBUTION: ubuntu18
+    - MOLECULE_DISTRIBUTION: ubuntu20
+    - MOLECULE_DISTRIBUTION: debian8
+    - MOLECULE_DISTRIBUTION: debian9
+    - MOLECULE_DISTRIBUTION: debian10
 # Install ansible
 addons:
   apt:

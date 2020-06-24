@@ -6,59 +6,13 @@ dependency:
 driver:
   name: docker
 platforms:
-  - name: debian10
-    image: geerlingguy/docker-debian10-ansible
-    tmpfs:
-      - /run
-      - /tmp
-    command: ""
+  - name: ${MOLECULE_DISTRIBUTION:-debian10}
+    image: "nekeal/${MOLECULE_DISTRIBUTION:-debian10}-ansible-systemd:latest"
+    command: ${MOLECULE_COMMAND:-""}
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
-    pre_build_image: true
-    privileged: true
-  - name: debian9
-    image: geerlingguy/docker-debian9-ansible
-    tmpfs:
-      - /run
-      - /tmp
-    command: ""
-    volumes:
-      - /sys/fs/cgroup:/sys/fs/cgroup:ro
-    pre_build_image: true
-    privileged: true
-  - name: debian8
-    image: nekeal/debian8-ansible-systemd
-    # image: percygrunwald/docker-debian8-ansible
-    tmpfs:
-      - /run
-      - /tmp
-    command: ""
-    volumes:
-      - /sys/fs/cgroup:/sys/fs/cgroup:ro
-    pre_build_image: true
-    pull: true
-    privileged: true
-  - name: ubuntu1804
-    image: geerlingguy/docker-ubuntu1804-ansible
-    tmpfs:
-      - /run
-      - /tmp
-    command: ""
-    volumes:
-      - /sys/fs/cgroup:/sys/fs/cgroup:ro
-    pre_build_image: true
-    privileged: true
-  - name: ubuntu2004
-    image: geerlingguy/docker-ubuntu2004-ansible
-    tmpfs:
-      - /run
-      - /tmp
-      - /var/log/journald
-    command: ""
-    volumes:
-      - /sys/fs/cgroup:/sys/fs/cgroup:ro
-    pre_build_image: true
-    privileged: true
+    privileged: yes
+    pre_build_image: yes
 provisioner:
   name: ansible
   log: true
