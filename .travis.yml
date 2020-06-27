@@ -9,9 +9,36 @@ env:
   global:
     - ROLE_NAME: postgresql-db
   matrix:
-    - POSTGRESQL_VERSION=10
-    - POSTGRESQL_VERSION=11
-    - POSTGRESQL_VERSION=12
+    - MOLECULE_DISTRIBUTION: ubuntu18
+      POSTGRESQL_VERSION: 10
+    - MOLECULE_DISTRIBUTION: ubuntu20
+      POSTGRESQL_VERSION: 10
+    - MOLECULE_DISTRIBUTION: debian8
+      POSTGRESQL_VERSION: 10
+    - MOLECULE_DISTRIBUTION: debian9
+      POSTGRESQL_VERSION: 10
+    - MOLECULE_DISTRIBUTION: debian10
+      POSTGRESQL_VERSION: 10
+    - MOLECULE_DISTRIBUTION: ubuntu18
+      POSTGRESQL_VERSION: 11
+    - MOLECULE_DISTRIBUTION: ubuntu20
+      POSTGRESQL_VERSION: 11
+    - MOLECULE_DISTRIBUTION: debian8
+      POSTGRESQL_VERSION: 11
+    - MOLECULE_DISTRIBUTION: debian9
+      POSTGRESQL_VERSION: 11
+    - MOLECULE_DISTRIBUTION: debian10
+      POSTGRESQL_VERSION: 11
+    - MOLECULE_DISTRIBUTION: ubuntu18
+      POSTGRESQL_VERSION: 12
+    - MOLECULE_DISTRIBUTION: ubuntu20
+      POSTGRESQL_VERSION: 12
+    - MOLECULE_DISTRIBUTION: debian8
+      POSTGRESQL_VERSION: 12
+    - MOLECULE_DISTRIBUTION: debian9
+      POSTGRESQL_VERSION: 12
+    - MOLECULE_DISTRIBUTION: debian10
+      POSTGRESQL_VERSION: 12
 # Install ansible
 addons:
   apt:
@@ -21,7 +48,7 @@ addons:
 install:
   - mv "$PWD" "${PWD%/*}/$ROLE_NAME"
   # Install ansible
-  - pip install ansible molecule docker testinfra pytest pytest-xdist
+  - pip install ansible molecule docker testinfra pytest pytest-xdist ansible-lint yamllint
 
   # Check ansible version
   - ansible --version
