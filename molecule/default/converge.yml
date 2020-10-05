@@ -6,11 +6,6 @@
       set_fact:
         postgresql_major_version: "{{ lookup('env', 'POSTGRESQL_VERSION') | default(omit, true) }}"
 
-    - name: Install gpg-agent
-      apt:
-        name: gpg-agent
-      become: yes
-
     - name: "Include postgresql-db"
       include_role:
         name: "postgresql-db"
