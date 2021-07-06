@@ -1,6 +1,6 @@
 galaxy_info:
   role_name: postgresql_db
-  author: Szymon Cader
+  author: nekeal
   description: Ansible role for setting up postgresql server, users and databases
   license: license (MIT)
 
